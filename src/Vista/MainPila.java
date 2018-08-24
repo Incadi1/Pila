@@ -28,9 +28,19 @@ public class MainPila {
         Pila<Persona> pilaDuplicada = OperacionesPila.duplicar(pilaPer);
         Pila<Persona> pilaInvertida = OperacionesPila.invertir(pilaPer);
 
+        Pila<Persona> pilaPer2 = new Pila<>();
+
+        pilaPer2.apilar(new Persona("Ingrid", "1130", 20));
+        pilaPer2.apilar(new Persona("Diego", "1140", 22));
+        pilaPer2.apilar(new Persona("Daniela", "1150", 30));
+        pilaPer2.apilar(new Persona("Angie", "1160", 10));
+
+        Pila<Persona> PilaConcatenar = OperacionesPila.concatenar(pilaPer, pilaPer2);
+
         System.out.println("Estos son los datos de la pila: \n" + pilaPer); //Escribir sout y darle en tabular "Las dos rayas"
         System.out.println("\n Estos son los datos de la pila duplicada: \n" + pilaDuplicada);
         System.out.println("\n Estos son los datos de la pila invertida: \n" + pilaInvertida);
+        System.out.println("\n Estos son los datos de la pila concatenada: \n" + PilaConcatenar);
 
     }
 

@@ -1,5 +1,7 @@
 package Model;
 
+import Data.Persona;
+
 public class OperacionesPila<T extends Base> {
 
     /*Se encarga de duplicar la informacion de la pila utilizando haciendo ___,
@@ -17,7 +19,8 @@ public class OperacionesPila<T extends Base> {
 
         while (!PilaAux.estaVacio()) {
             T e = PilaAux.desapilar();
-            T c = (T) e.copy(); /*Se manda para los dos lados sin esta linea... hace 
+            T c = (T) e.copy();
+            /*Se manda para los dos lados sin esta linea... hace 
             que las dos pilas se qeuden sin un elemento ya que e la copia fantasma..
                                 Elemento superficial*/
             pilaOriginal.apilar(e);
@@ -26,33 +29,30 @@ public class OperacionesPila<T extends Base> {
         return PilaCopia;
 
     }
-    
-    
-    public static <T extends Base> Pila<T> invertir(Pila<T> pilaOriginal){ //INVERTIR
-       
+
+    public static <T extends Base> Pila<T> invertir(Pila<T> pilaOriginal) { //INVERTIR
+
         Pila<T> PilaCopia = duplicar(pilaOriginal);
         Pila<T> PilaInvertida = new Pila<>();
-        
-        while(!PilaCopia.estaVacio()){
-            PilaInvertida.apilar(PilaCopia.desapilar());           
-        } 
+
+        while (!PilaCopia.estaVacio()) {
+            PilaInvertida.apilar(PilaCopia.desapilar());
+        }
         return PilaInvertida;
     }
-    
-     public static <T extends Base> Pila<T> concatenar(Pila<T> Pila1, Pila<T> Pila2){ //CONCATENAR
-         Pila<T> PilaDuplicar = duplicar(Pila1);//pilaAux1
-        Pila<T> PilaInvertir = invertir(Pila2);//pilaAux2
-        
-        while(!PilaInvertir.estaVacio()){
-            PilaDuplicar.apilar(PilaInvertir.desapilar());           
-        } return PilaDuplicar;
-        
-     //Hacer la cola 
-     
-     
-     }
+
+    public static <T extends Base> Pila<T> concatenar(Pila<T> Pila1, Pila<T> Pila2) { //CONCATENAR
+        Pila<T> PilaDuplicar1 = duplicar(Pila1);//pilaAux1
+        Pila<T> PilaDuplicar2 = duplicar(Pila2);//pilaAux2
+        Pila<T> PilaDuplicar3 = invertir(PilaDuplicar2);
+
+        while (!PilaDuplicar3.estaVacio()) {
+            PilaDuplicar1.apilar(PilaDuplicar3.desapilar());
+        }
+        return PilaDuplicar1;
+
+        //Hacer la cola 
+    }
+
+
 }
-
-
-
-
